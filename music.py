@@ -20,14 +20,14 @@ from ndlib.utils import multi_runs
 import ndlib.models.ModelConfig as mc
 from requests.exceptions import Timeout
 
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
-import requests
-client_credentials_manager = SpotifyClientCredentials(client_id = access.spotify_client_id, client_secret = access.spotify_client_secret)
-sp = spotipy.Spotify(client_credentials_manager = client_credentials_manager)
+# import spotipy
+# from spotipy.oauth2 import SpotifyClientCredentials
+# import requests
+# client_credentials_manager = SpotifyClientCredentials(client_id = access.spotify_client_id, client_secret = access.spotify_client_secret)
+# sp = spotipy.Spotify(client_credentials_manager = client_credentials_manager)
 
-import lyricsgenius
-from rauth import OAuth2Service
+# import lyricsgenius
+# from rauth import OAuth2Service
 
 STOP = set(nltk.corpus.stopwords.words('english') + list(string.punctuation))
 
@@ -97,6 +97,10 @@ def fill_topic_weights(df_row, bow_corpus, ldamodel):
         return df_row
     return df_row
 
+def set_legend_alpha(leghandles, alpha = 1):
+    for l in leghandles:
+        l.set_alpha(alpha)
+
 def plot_numerical_std(var_group,all_genres, by_genre, legend = False):
     i = 1
     plt.figure(figsize=(16,8))
@@ -119,13 +123,14 @@ def plot_numerical_std(var_group,all_genres, by_genre, legend = False):
         i += 1
     if legend:
         leg = plt.legend(labels = all_genres, bbox_to_anchor=(1.05,1),ncol=2)
-        for l in leg.legendHandles:
-            l.set_alpha(1)
+        set_legend_alpha(leg.legendHandles)
+        # for l in leg.legendHandles:
+        #     l.set_alpha(1)
         leg
 
-r = requests.post('https://accounts.spotify.com/api/token',
-data ={'grant_type': 'client_credentials'},auth=(access.spotify_client_id, access.spotify_client_secret))
-bearer = dict(r.json())['access_token']
+# r = requests.post('https://accounts.spotify.com/api/token',
+# data ={'grant_type': 'client_credentials'},auth=(access.spotify_client_id, access.spotify_client_secret))
+# bearer = dict(r.json())['access_token']
 
 def spotify_query(genre,year,max=10000):
     uri,artist_name,track_name,popularity,track_id,release_date = [],[],[],[],[],[]
