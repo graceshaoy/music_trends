@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Was Horkheimer Right?</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="pt1_check_horkheimer_files/libs/clipboard/clipboard.min.js"></script>
+<script src="pt1_check_horkheimer_files/libs/quarto-html/quarto.js"></script>
+<script src="pt1_check_horkheimer_files/libs/quarto-html/popper.min.js"></script>
+<script src="pt1_check_horkheimer_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="pt1_check_horkheimer_files/libs/quarto-html/anchor.min.js"></script>
+<link href="pt1_check_horkheimer_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="pt1_check_horkheimer_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="pt1_check_horkheimer_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="pt1_check_horkheimer_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="pt1_check_horkheimer_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Was Horkheimer Right?</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="music-and-the-homoheterogenization-of-culture" class="level1">
+<h1>Music and the Homo/Heterogenization of Culture</h1>
+<p>In “The Culture Industry: Enlightenment as Mass Deceoption”, Horkheimer and Adorno claim that “Culture today is infecting everything with sameness”. <br> They argue that while variations do exist, the variation is not true variation – rather, like a wheel spinning in place, it gives the appearance of differentiation, but there ultimately is no true difference. Either the differences are surface level (such as the extravagant use of technology in films) and do not relate to the meaning of the products themselves, or they do not varying from existing styles. Everything is created within the same pre-existing types. <br> <br> Here, we will evaluate this claim of “sameness” in relation to the popular music industry, using data from the Billboard Hot 100.</p>
+</section>
+<section id="i.-read-in-data" class="level1">
+<h1>I. Read in data</h1>
+<div class="cell" data-execution_count="6">
+<div class="cell-output cell-output-stdout">
+<pre><code>Index(['lyrics', 'num_syllables', 'pos', 'year', 'fog_index', 'flesch_index',
+       'num_words', 'num_lines', 'title', 'f_k_grade', 'artist',
+       'difficult_words', 'num_dupes', 'neg', 'neu', 'compound', 'id',
+       'danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness',
+       'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo',
+       'duration_ms', 'time_signature', 'uri', 'analysis_url',
+       'artist_with_features', 'year_bin', 'image', 'cluster', 'Gender'],
+      dtype='object')</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>lyrics</th>
+      <th>num_syllables</th>
+      <th>pos</th>
+      <th>year</th>
+      <th>fog_index</th>
+      <th>flesch_index</th>
+      <th>num_words</th>
+      <th>num_lines</th>
+      <th>title</th>
+      <th>f_k_grade</th>
+      <th>...</th>
+      <th>tempo</th>
+      <th>duration_ms</th>
+      <th>time_signature</th>
+      <th>uri</th>
+      <th>analysis_url</th>
+      <th>artist_with_features</th>
+      <th>year_bin</th>
+      <th>image</th>
+      <th>cluster</th>
+      <th>Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Mona Lisa, Mona Lisa, men have named you\nYou'...</td>
+      <td>189.0</td>
+      <td>0.199</td>
+      <td>1950</td>
+      <td>5.2</td>
+      <td>88.74</td>
+      <td>145</td>
+      <td>17</td>
+      <td>Mona Lisa</td>
+      <td>2.9</td>
+      <td>...</td>
+      <td>86.198</td>
+      <td>207573.0</td>
+      <td>3</td>
+      <td>spotify:track:3k5ycyXX5qsCjLd7R2vphp</td>
+      <td>https://api.spotify.com/v1/audio-analysis/3k5y...</td>
+      <td>NaN</td>
+      <td>1950s</td>
+      <td>https://i.scdn.co/image/a4c0918f13b67aa8d9f4ea...</td>
+      <td>String Lover</td>
+      <td>male</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>I wanna be Loved\nBy Andrews Sisters\n\nOooo-o...</td>
+      <td>270.9</td>
+      <td>0.224</td>
+      <td>1950</td>
+      <td>4.4</td>
+      <td>82.31</td>
+      <td>189</td>
+      <td>31</td>
+      <td>I Wanna Be Loved</td>
+      <td>3.3</td>
+      <td>...</td>
+      <td>170.869</td>
+      <td>198027.0</td>
+      <td>5</td>
+      <td>spotify:track:4UY81WrDU3jTROGaKuz4uZ</td>
+      <td>https://api.spotify.com/v1/audio-analysis/4UY8...</td>
+      <td>Gordon Jenkins</td>
+      <td>1950s</td>
+      <td>https://i.scdn.co/image/42e4dc3ab9b190056a1ca1...</td>
+      <td>String Lover</td>
+      <td>Group</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 37 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="ii.-has-our-taste-changed" class="level1">
+<h1>II. Has our taste changed?</h1>
+<div class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<p><img src="pt1_check_horkheimer_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><em>Songs by Year</em><br> In this scatterplot, we have the first two components of a PCA decomposition of the Spotify numerical data (such as danceability, tempo, and speechiness) for each song on the Billboard Hot 100. The decade of release is represented by color. The years seem to be clustered, moving to the right with time.</p>
+<p>There has been a general shift in our music taste over time. However, PCA decomposition loses interpretability. While Horkheimer and Adorno might argue that readability or acousticness do not capture the true content of music, I would argue that they do. The medium of music inherently communicates not only through lyrics, but also through the energy embedded in qualities such as acousticness. Thus, because the linear combination of these variables shows change over time, we start with the idea that Horkheimer and Adorno were not completely right.</p>
+<section id="iii.-are-there-big-hits-that-are-imitated-after" class="level3">
+<h3 class="anchored" data-anchor-id="iii.-are-there-big-hits-that-are-imitated-after">III. Are there big hits that are imitated after?</h3>
+<p>Horkheimer and Adorno argue that culture tends toward sameness through imitating what has previously demonstrated success. Therefore, songs that are different but successful should have many imitators. <br> To see if this is true, I take the first ten years in the dataset and use their numerical metrics and PCA decomposition to create a basis that captures at least 95% of the information. From there, I find if there’s a song in the next year’s top ten whos residual is an outlier. Then, I repeat this for the next year, using all the previous years numerical values to create a new basis. <br></p>
+<div class="cell" data-execution_count="18">
+<div class="cell-output cell-output-display">
+<p><img src="pt1_check_horkheimer_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><em>PCA reconstruction residuals.</em> <br> This histogram shows how similar each song is to each song unique for it’s time. The distribution is mound shaped, and skewed to the right. Most songs are not similar to these unique songs, but a few are.</p>
+<p><em>Influential vs.&nbsp;Influenced Songs.</em><br> These scatterplots show the most unique songs of their time, along with similar songs and their release year. The release year of the unique song is represented with a red line. “Poison” most clearly demonstrates imitators. “I’m Real” seems to be following a growing trend, and popularized said trend. Others, such as “Buy U A Drank”, “Candy Shop”, and “Single Ladies” seem to be following a trend, and happened to be the first song to reach the top 10. Still others, such as “The Streak” and “Hey Jude” seem to come before their time, with a different song later on setting the trend off.</p>
+<p>From this, it seems that Horkheimer’s argument that unique and successful songs create imitators is true. Each dot in these scatterplots have reached the Billboard Hot 100, so while the songs chosen (from the Top 10) might not have been the trendsetter, many of these plots show the emergence of a unique musical idea that then becomes common.<br> <br> A further analysis might identify the true trendsetters.<br></p>
+</section>
+<section id="iv.-are-genres-becoming-more-standarized" class="level3">
+<h3 class="anchored" data-anchor-id="iv.-are-genres-becoming-more-standarized">IV. Are genres becoming more standarized?</h3>
+<p>Horkheimer and Adorno argue that the mechanically differentiated products are alike in the end because they are created from formulas, proved to be successful. If that is the case, then the deviation from accepted norms should grow smaller as time goes on. <br></p>
+<p>With music, the accepted norms are the genres. Therefore, I’ll examine the deviation within genres.</p>
+<section id="examining-how-standard-deviation-of-numerical-metrics-have-changed" class="level4">
+<h4 class="anchored" data-anchor-id="examining-how-standard-deviation-of-numerical-metrics-have-changed">Examining how standard deviation of numerical metrics have changed</h4>
+<div class="cell" data-execution_count="144">
+<div class="cell-output cell-output-display">
+<p><img src="pt1_check_horkheimer_files/figure-html/cell-34-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><em>Change of Variability within Genres</em> <br> This horizontal stacked bar chart displays the proportion of statistically significant positive and negative slopes of the numerical variables within each genre. Fifteen aggregate genres are included, such as pop, classical/soundtrack, and blues. Most of the slopes are positive.</p>
+<p>In favor of Horkheimer’s theory, the standard deviation of acousticness within genres has decreased, with 73% of genres having a negative slope with a p-value less than 0.05. However, many variables have actually increased their standard deviation within genres; most notably loudness, number of duplicate lines, number of words, duration, and energy. Additionally, even out of the variables that had a negative slope, most of those are less than a standard deviation away from zero.</p>
+<p>While Horkheimer was right that highly successful and different songs had imitators, there does not seem to be evidence that genres became more specific. If we take Horkheimer’s understanding of culture to be true, these variables should have become more consistent with genres as genres become more formulaic. While he might argue that these variables actually do not capture the true substance of music, so their standard deviation does not matter, I would disagree. The substance of music is not only in its lyrics, but also how those lyrics are conveyed. Emotion is conveyed through both words and the effects of loudness, repetition, and energy level.</p>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
