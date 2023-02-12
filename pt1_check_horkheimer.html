@@ -179,12 +179,18 @@ ul.task-list li input[type="checkbox"] {
 <section id="iii.-are-there-big-hits-that-are-imitated-after" class="level3">
 <h3 class="anchored" data-anchor-id="iii.-are-there-big-hits-that-are-imitated-after">III. Are there big hits that are imitated after?</h3>
 <p>Horkheimer and Adorno argue that culture tends toward sameness through imitating what has previously demonstrated success. Therefore, songs that are different but successful should have many imitators. <br> To see if this is true, I take the first ten years in the dataset and use their numerical metrics and PCA decomposition to create a basis that captures at least 95% of the information. From there, I find if there’s a song in the next year’s top ten whos residual is an outlier. Then, I repeat this for the next year, using all the previous years numerical values to create a new basis. <br></p>
+<div class="cell" data-execution_count="32">
+<div class="cell-output cell-output-display">
+<p><img src="pt1_check_horkheimer_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><em>PCA Reconstruction Error.</em> <br> This histogram shows the distribution of the reconstruction error for each song based on a PCA decomposition of all songs released the year before. Most songs are not unique for their time, but the right-skew shows that there are a songs unique for their time. <br></p>
 <div class="cell" data-execution_count="18">
 <div class="cell-output cell-output-display">
-<p><img src="pt1_check_horkheimer_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+<p><img src="pt1_check_horkheimer_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p><em>PCA reconstruction residuals.</em> <br> This histogram shows how similar each song is to each song unique for it’s time. The distribution is mound shaped, and skewed to the right. Most songs are not similar to these unique songs, but a few are.</p>
+<p><em>Cosine Similarities.</em> <br> This histogram shows how similar each song is to each song unique for it’s time. The distribution is mound shaped, and skewed to the right. Most songs are not similar to these unique songs, but a few are.</p>
 <div class="cell" data-execution_count="29">
 <div class="cell-output cell-output-display" data-execution_count="29">
 
@@ -251,7 +257,7 @@ ul.task-list li input[type="checkbox"] {
 <h4 class="anchored" data-anchor-id="examining-how-standard-deviation-of-numerical-metrics-have-changed">Examining how standard deviation of numerical metrics have changed</h4>
 <div class="cell" data-execution_count="144">
 <div class="cell-output cell-output-display">
-<p><img src="pt1_check_horkheimer_files/figure-html/cell-34-output-1.png" class="img-fluid"></p>
+<p><img src="pt1_check_horkheimer_files/figure-html/cell-35-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><em>Change of Variability within Genres</em> <br> This horizontal stacked bar chart displays the proportion of statistically significant positive and negative slopes of the numerical variables within each genre. Fifteen aggregate genres are included, such as pop, classical/soundtrack, and blues. Most of the slopes are positive.</p>
